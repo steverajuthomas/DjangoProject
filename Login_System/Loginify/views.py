@@ -18,8 +18,8 @@ def login_page(request):
             password = form.cleaned_data['Password']
             try:
                 user = UserDetails.objects.get(Email=email)
-                if user.Password == password:  # Check password
-                    return HttpResponse("Login successful!")  # Or redirect to a dashboard
+                if user.Password == password: 
+                    return HttpResponse("Login successful!")  
                 else:
                     return render(request, 'Loginify/loginpage.html', {'form': form, 'error': 'Invalid password.'})
             except UserDetails.DoesNotExist:
@@ -40,7 +40,7 @@ def signup_page(request):
                 form.add_error('Email', 'A user with this email already exists.')
             else:
                 form.save()
-                return redirect('login-page')  # Redirect to login page after successful signup
+                return redirect('login-page') 
     else:
         form = SignupForm()
 
